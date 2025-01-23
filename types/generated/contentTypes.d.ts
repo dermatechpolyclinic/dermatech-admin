@@ -411,7 +411,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    concern: Schema.Attribute.Relation<'oneToOne', 'api::concern.concern'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -422,12 +421,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
-    promotion: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::promotion.promotion'
-    >;
     publishedAt: Schema.Attribute.DateTime;
-    service: Schema.Attribute.Relation<'oneToOne', 'api::service.service'>;
     slug: Schema.Attribute.UID<'Name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -438,6 +432,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiConcernConcern extends Struct.CollectionTypeSchema {
   collectionName: 'concerns';
   info: {
+    description: '';
     displayName: 'Concern';
     pluralName: 'concerns';
     singularName: 'concern';
@@ -577,6 +572,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
   collectionName: 'promotions';
   info: {
+    description: '';
     displayName: 'Promotion';
     pluralName: 'promotions';
     singularName: 'promotion';
@@ -621,6 +617,7 @@ export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: 'services';
   info: {
+    description: '';
     displayName: 'Service';
     pluralName: 'services';
     singularName: 'service';
