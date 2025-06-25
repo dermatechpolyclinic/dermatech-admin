@@ -369,7 +369,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-<<<<<<< Updated upstream
 export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   collectionName: 'blogs';
   info: {
@@ -404,11 +403,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
     description: '';
-=======
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
->>>>>>> Stashed changes
     displayName: 'Category';
     pluralName: 'categories';
     singularName: 'category';
@@ -417,18 +411,31 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    banner_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    content: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    faqs: Schema.Attribute.JSON;
+    heading: Schema.Attribute.String;
+    image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image3: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::category.category'
     > &
       Schema.Attribute.Private;
+    Main_Banner: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-<<<<<<< Updated upstream
     slug: Schema.Attribute.UID<'Name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -474,8 +481,6 @@ export interface ApiConcernConcern extends Struct.CollectionTypeSchema {
     meta_title: Schema.Attribute.String;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-=======
->>>>>>> Stashed changes
     slug: Schema.Attribute.UID;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1233,13 +1238,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-<<<<<<< Updated upstream
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
       'api::concern.concern': ApiConcernConcern;
-=======
-      'api::category.category': ApiCategoryCategory;
->>>>>>> Stashed changes
       'api::contact.contact': ApiContactContact;
       'api::discount.discount': ApiDiscountDiscount;
       'api::global.global': ApiGlobalGlobal;
