@@ -369,9 +369,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBeforeAfterBeforeAfter extends Struct.CollectionTypeSchema {
+  collectionName: 'before_afters';
+  info: {
+    displayName: 'Before-After';
+    pluralName: 'before-afters';
+    singularName: 'before-after';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Image_alt: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::before-after.before-after'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   collectionName: 'blogs';
   info: {
+    description: '';
     displayName: 'Blog';
     pluralName: 'blogs';
     singularName: 'blog';
@@ -387,11 +418,14 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    faqs: Schema.Attribute.JSON;
     gallery1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     gallery2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -443,51 +477,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiConcernConcern extends Struct.CollectionTypeSchema {
-  collectionName: 'concerns';
-  info: {
-    description: '';
-    displayName: 'Concern';
-    pluralName: 'concerns';
-    singularName: 'concern';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Banner_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
-    content: Schema.Attribute.JSON;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    faqs: Schema.Attribute.JSON;
-    heading: Schema.Attribute.String;
-    image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image3: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::concern.concern'
-    > &
-      Schema.Attribute.Private;
-    Main_banner: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    meta_description: Schema.Attribute.Text;
-    meta_title: Schema.Attribute.String;
-    Name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
@@ -520,31 +509,68 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDiscountDiscount extends Struct.CollectionTypeSchema {
-  collectionName: 'discounts';
+export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
+  collectionName: 'doctors';
   info: {
-    displayName: 'Discount';
-    pluralName: 'discounts';
-    singularName: 'discount';
+    displayName: 'Doctor';
+    pluralName: 'doctors';
+    singularName: 'doctor';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Amount: Schema.Attribute.String;
-    benifits: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Degree: Schema.Attribute.String;
     image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::discount.discount'
+      'api::doctor.doctor'
     > &
       Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEventEvent extends Struct.CollectionTypeSchema {
+  collectionName: 'events';
+  info: {
+    displayName: 'Event';
+    pluralName: 'events';
+    singularName: 'event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Banner_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    content: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    faqs: Schema.Attribute.JSON;
+    heading: Schema.Attribute.String;
+    image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
+      Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'Name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -583,13 +609,13 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
-  collectionName: 'promotions';
+export interface ApiGuideGuide extends Struct.CollectionTypeSchema {
+  collectionName: 'guides';
   info: {
     description: '';
-    displayName: 'Promotion';
-    pluralName: 'promotions';
-    singularName: 'promotion';
+    displayName: 'Guide';
+    pluralName: 'guides';
+    singularName: 'guide';
   };
   options: {
     draftAndPublish: true;
@@ -598,75 +624,24 @@ export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
     Banner_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
-    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     content: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
     faqs: Schema.Attribute.JSON;
     heading: Schema.Attribute.String;
     image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image3: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::promotion.promotion'
-    > &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::guide.guide'> &
       Schema.Attribute.Private;
-    Main_banner: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
     meta_description: Schema.Attribute.Text;
     meta_title: Schema.Attribute.String;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiServiceService extends Struct.CollectionTypeSchema {
-  collectionName: 'services';
-  info: {
-    description: '';
-    displayName: 'Service';
-    pluralName: 'services';
-    singularName: 'service';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Banner_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
-    content: Schema.Attribute.JSON;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    faqs: Schema.Attribute.JSON;
-    heading: Schema.Attribute.String;
-    image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image3: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::service.service'
-    > &
-      Schema.Attribute.Private;
-    Main_banner: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    meta_description: Schema.Attribute.Text;
-    meta_title: Schema.Attribute.String;
-    Name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
+    slug: Schema.Attribute.UID<'Name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1238,14 +1213,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::before-after.before-after': ApiBeforeAfterBeforeAfter;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
-      'api::concern.concern': ApiConcernConcern;
       'api::contact.contact': ApiContactContact;
-      'api::discount.discount': ApiDiscountDiscount;
+      'api::doctor.doctor': ApiDoctorDoctor;
+      'api::event.event': ApiEventEvent;
       'api::global.global': ApiGlobalGlobal;
-      'api::promotion.promotion': ApiPromotionPromotion;
-      'api::service.service': ApiServiceService;
+      'api::guide.guide': ApiGuideGuide;
       'api::test.test': ApiTestTest;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;

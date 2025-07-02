@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "blogs",
+  "collectionName": "guides",
   "info": {
-    "singularName": "blog",
-    "pluralName": "blogs",
-    "displayName": "Blog",
+    "singularName": "guide",
+    "pluralName": "guides",
+    "displayName": "Guide",
     "description": ""
   },
   "options": {
@@ -12,47 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "blog_name": {
+    "Name": {
+      "type": "string"
+    },
+    "description": {
       "type": "text"
     },
-    "blog_date": {
-      "type": "date"
-    },
-    "blog_info": {
-      "type": "json"
-    },
-    "banner": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "gallery1": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "gallery2": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "heading": {
+      "type": "string"
     },
     "meta_title": {
       "type": "string"
@@ -60,8 +27,51 @@
     "meta_description": {
       "type": "text"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
+    },
+    "content": {
+      "type": "json"
+    },
     "faqs": {
       "type": "json"
+    },
+    "Banner_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image1": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Date": {
+      "type": "date"
     }
   }
 }

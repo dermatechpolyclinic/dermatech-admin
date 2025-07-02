@@ -1,58 +1,64 @@
 {
   "kind": "collectionType",
-  "collectionName": "blogs",
+  "collectionName": "events",
   "info": {
-    "singularName": "blog",
-    "pluralName": "blogs",
-    "displayName": "Blog",
-    "description": ""
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "blog_name": {
+    "Name": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "description": {
       "type": "text"
     },
-    "blog_date": {
-      "type": "date"
-    },
-    "blog_info": {
+    "content": {
       "type": "json"
     },
-    "banner": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "faqs": {
+      "type": "json"
     },
-    "gallery1": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
     },
-    "gallery2": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "Banner_image": {
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "image1": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "image2": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "meta_title": {
       "type": "string"
@@ -60,8 +66,8 @@
     "meta_description": {
       "type": "text"
     },
-    "faqs": {
-      "type": "json"
+    "date": {
+      "type": "date"
     }
   }
 }
