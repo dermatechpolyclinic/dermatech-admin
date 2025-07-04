@@ -480,6 +480,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
+    description: '';
     displayName: 'Contact';
     pluralName: 'contacts';
     singularName: 'contact';
@@ -503,6 +504,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String;
     Number: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    Services: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -512,6 +514,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
 export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
   collectionName: 'doctors';
   info: {
+    description: '';
     displayName: 'Doctor';
     pluralName: 'doctors';
     singularName: 'doctor';
@@ -524,6 +527,8 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Degree: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    hospital_affliation: Schema.Attribute.String;
     image1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -531,8 +536,10 @@ export interface ApiDoctorDoctor extends Struct.CollectionTypeSchema {
       'api::doctor.doctor'
     > &
       Schema.Attribute.Private;
+    machine: Schema.Attribute.Text;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    spelalization: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
